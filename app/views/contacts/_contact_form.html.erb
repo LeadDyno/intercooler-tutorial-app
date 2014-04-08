@@ -1,0 +1,33 @@
+<% @contact.errors.full_messages.each do |msg| %>
+  <div class="alert alert-danger"><%= msg %></div>
+<% end %>
+
+<%= form_for(@contact, html: {role: 'form'}) do |f| %>
+
+  <div class="form-group">
+    <label>First Name</label>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Last Name</label>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <label>Status</label>
+    <%= f.select :status, [['Active', 'active'], ['Inactive', 'inactive']], {}, class: 'form-control' %>
+  </div>
+
+  <hr/>
+
+  <div class="form-group">
+    <button class="btn btn-primary">Save Contact</button>
+  </div>
+
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Contacts Details</h1>
+
+<hr/>
+
+<div>
+  <h4>First Name</h4>
+  <%= @contact.first_name %>
+</div>
+
+<div>
+  <h4>Last Name</h4>
+  <%= @contact.last_name %>
+</div>
+
+<div>
+  <h4>Email</h4>
+  <%= @contact.email %>
+</div>
+
+<div>
+  <h4>Status</h4>
+  <%= @contact.status %>
+</div>
+<hr/>
+<a href="<%= edit_contact_path @contact %>" class="btn btn-primary">Edit Contact</a>
