@@ -3,11 +3,11 @@
   <head>
     <title>IntercoolerTutorialApp</title>
 
-    <link rel='stylesheet' type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
+
+    <link rel='stylesheet' type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <%= csrf_meta_tags %>
   </head>
@@ -33,13 +33,18 @@
 
     <div id="flash-div" class="container">
       <% if flash[:notice] %>
-        <div class="alert alert-info"><%= flash[:notice] %></div>
+        <div class="alert alert-info">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= flash[:notice] %>
+        </div>
       <% end %>
 
       <% if flash[:error] %>
-        <div class="alert alert-danger"><%= flash[:error] %></div>
-      <% end %>
-    </div>
+        <div class="alert alert-danger">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= flash[:error] %>
+        </div>
+      <% end %>    </div>
 
     <div id="content-div" class="container">
       <%= yield %>

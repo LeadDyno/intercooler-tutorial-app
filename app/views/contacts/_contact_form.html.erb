@@ -27,7 +27,15 @@
   <hr/>
 
   <div class="form-group">
-    <button class="btn btn-primary">Save Contact</button>
+
+    <button class="btn btn-primary">
+      Save Contact
+    </button>
+
+    <a href="<%= url_for @contact %>" class="btn btn-danger">
+      Cancel
+    </a>
+
   </div>
 
 <% end %>
