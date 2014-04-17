@@ -28,7 +28,13 @@
 
   <div class="form-group">
 
-    <button class="btn btn-primary">
+    <button <% if @contact.persisted? %>
+            ic-put-to="<%= contact_path @contact %>"
+            <% else %>
+            ic-post-to="<%= contacts_path %>"
+            <% end %>
+            ic-target="#content-div"
+            class="btn btn-primary">
       Save Contact
     </button>
 

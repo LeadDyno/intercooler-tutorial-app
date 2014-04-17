@@ -2,28 +2,35 @@ class ContactsController < ApplicationController
 
   def index
     @contacts = Contact.paginate(:page => params[:page])
+    render :layout => params['ic-request'].blank?
   end
 
   def show
     @contact = Contact.find(params[:id])
+    render :layout => params['ic-request'].blank?
   end
 
   def edit
     @contact = Contact.find(params[:id])
+    headers['X-IC-SetLocation'] = edit_contact_path @contact
+    render :layout => params['ic-request'].blank?
   end
 
   def new
     @contact = Contact.new
+    headers['X-IC-SetLocation'] = new_contact_path
+    render :layout => params['ic-request'].blank?
   end
 
   def create
     @contact = Contact.create(person_params)
     if @contact.save
       flash[:notice] = 'Created Contact'
-      redirect_to @contact
+      headers['X-IC-SetLocation'] = contact_path @contact
+      render action: :show, :layout => params['ic-request'].blank?
     else
       flash[:error] = 'Could not create Contact'
-      render action: :new
+      render action: :new, :layout => params['ic-request'].blank?
     end
   end
 
@@ -31,10 +38,11 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     if @contact.update_attributes(person_params)
       flash[:notice] = 'Updated Contact'
-      redirect_to @contact
+      headers['X-IC-SetLocation'] = contact_path @contact
+      render action: :show, :layout => params['ic-request'].blank?
     else
       flash[:error] = 'Could not update contact!'
-      render action: :edit
+      render action: :edit, :layout => params['ic-request'].blank?
     end
   end
 
