@@ -19,3 +19,8 @@
     <%= render :partial => 'contact_rows' %>
   </tbody>
 </table>
+
+<span ic-append-from="/contacts/contact_rows?page=<%= (params[:page].to_i + 1 if params[:page]) or 2 %>"
+      ic-target="#contacts-table-body"
+      ic-include=".pageHolder:last-of-type"
+      ic-load-on="click" class="btn btn-primary">Load More</span>
