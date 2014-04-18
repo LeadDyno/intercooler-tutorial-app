@@ -1,0 +1,10 @@
+<div class="form-group <%= 'has-error' unless @contact.errors[:email].empty? %>">
+  <label>Email</label>
+  <input class="form-control" id="contact_email" name="contact[email]" type="text" value="<%= @contact.email %>"
+         ic-post-to="/contacts/<%= @contact.id if @contact.persisted? %>/email"
+         ic-transition="none"
+         ic-target="#emailDiv">
+  <% unless @contact.errors[:email].empty? %>
+    <span class="help-block"><%= @contact.errors[:email].join(', ') %></span>
+  <% end %>
+</div>

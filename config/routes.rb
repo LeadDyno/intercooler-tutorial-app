@@ -5,6 +5,10 @@ IntercoolerTutorialApp::Application.routes.draw do
       get 'contact_rows'
       get 'contacts_table'
       post 'contacts_table'
+      post 'email'
+    end
+    member do
+      post 'email'
     end
   end
 

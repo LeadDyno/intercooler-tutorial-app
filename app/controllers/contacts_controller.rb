@@ -24,6 +24,17 @@ class ContactsController < ApplicationController
     end
   end
 
+  def email
+    if params[:id]
+      @contact = Contact.find(params[:id])
+    else
+      @contact = Contact.new
+    end
+    @contact.assign_attributes(person_params)
+    @contact.valid?
+    render :partial => 'email'
+  end
+
   def show
     @contact = Contact.find(params[:id])
     render :layout => params['ic-request'].blank?

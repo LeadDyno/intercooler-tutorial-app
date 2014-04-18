@@ -10,12 +10,8 @@
     <%= f.text_field :last_name, class: 'form-control' %>
   </div>
 
-  <div class="form-group <%= 'has-error' unless @contact.errors[:email].empty? %>">
-    <label>Email</label>
-    <%= f.text_field :email, class: 'form-control' %>
-    <% unless @contact.errors[:email].empty? %>
-      <span class="help-block"><%= @contact.errors[:email].join(', ') %></span>
-    <% end %>
+  <div id="emailDiv">
+    <%= render :partial => 'email' %>
   </div>
 
   <div class="form-group">
