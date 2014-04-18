@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <td></td>
+      <td>Id</td>
+      <td>Status</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Email</td>
+    </tr>
+  </thead>
+  <tbody id="contacts-table-body">
+    <% @contacts.each do |c| %>
+      <tr>
+        <td>
+          <input type="checkbox" name="ids[]" value="<%= c.id %>"/>
+        </td>
+        <td>
+          <%= c.id %>
+        </td>
+        <td><%= c.status %></td>
+        <td><%= c.last_name %></td>
+        <td><%= c.email %></td>
+        <td><%= link_to "View Contact", c %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

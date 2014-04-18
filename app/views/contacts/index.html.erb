@@ -11,39 +11,20 @@
     </button>
     <ul class="dropdown-menu" role="menu">
       <li>
-        <a href="#">Activate</a>
+        <a id="activate-btn" ic-post-to="/contacts/contacts_table" ic-include="#contactsForm">Activate</a>
       </li>
       <li>
-        <a href="#">Deactivate</a>
+        <a id="deactivate-btn" ic-post-to="/contacts/contacts_table" ic-include="#contactsForm">Deactivate</a>
       </li>
     </ul>
   </div>
 
 </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <td>Id</td>
-      <td>Status</td>
-      <td>First Name</td>
-      <td>Last Name</td>
-      <td>Email</td>
-    </tr>
-  </thead>
-  <tbody id="contacts-table-body">
-    <% @contacts.each do |c| %>
-      <tr>
-        <td>
-          <%= c.id %>
-        </td>
-        <td><%= c.status %></td>
-        <td><%= c.last_name %></td>
-        <td><%= c.email %></td>
-        <td><%= link_to "View Contact", c %></td>
-      </tr>
-    <% end %>  </tbody>
-</table>
+<form ic-src="/contacts/contacts_table" id="contactsForm" ic-always-update="true">
+  <%= render :partial => 'contacts_table' %>
+</form>
+
 
 <div class="pull-right">
   <%= will_paginate @contacts, renderer: BootstrapPagination::Rails %>

@@ -10,6 +10,20 @@ class ContactsController < ApplicationController
     render :partial => 'contact_rows'
   end
 
+  def contacts_table
+    if request.post?
+      if params['ic-element-id'] == 'activate-btn'
+        Contact.find(params['ids']).each &:activate
+      else
+        Contact.find(params['ids']).each &:deactivate
+      end
+      render :nothing => true
+    else
+      @contacts = Contact.paginate(:page => params[:page])
+      render :partial => 'contacts_table'
+    end
+  end
+
   def show
     @contact = Contact.find(params[:id])
     render :layout => params['ic-request'].blank?
