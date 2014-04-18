@@ -1,7 +1,3 @@
-<% @contact.errors.full_messages.each do |msg| %>
-  <div class="alert alert-danger"><%= msg %></div>
-<% end %>
-
 <%= form_for(@contact, html: {role: 'form'}) do |f| %>
 
   <div class="form-group">
@@ -14,9 +10,12 @@
     <%= f.text_field :last_name, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group <%= 'has-error' unless @contact.errors[:email].empty? %>">
     <label>Email</label>
     <%= f.text_field :email, class: 'form-control' %>
+    <% unless @contact.errors[:email].empty? %>
+      <span class="help-block"><%= @contact.errors[:email].join(', ') %></span>
+    <% end %>
   </div>
 
   <div class="form-group">
