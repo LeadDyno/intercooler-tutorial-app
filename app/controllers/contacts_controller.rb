@@ -34,6 +34,10 @@ class ContactsController < ApplicationController
     end
   end
 
+  def flash_content
+    render :partial => 'layouts/flash_content'
+  end
+
   def update
     @contact = Contact.find(params[:id])
     if @contact.update_attributes(person_params)
