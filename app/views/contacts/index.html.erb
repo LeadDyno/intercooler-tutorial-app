@@ -4,23 +4,47 @@
   <a ic-get-from="<%= new_contact_path %>"
      ic-target="#content-div"
      class="btn btn-primary">Create Contact</a>
+
+  <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      Action <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <li>
+        <a href="#">Activate</a>
+      </li>
+      <li>
+        <a href="#">Deactivate</a>
+      </li>
+    </ul>
+  </div>
+
 </div>
 
 <table class="table">
   <thead>
     <tr>
       <td>Id</td>
+      <td>Status</td>
       <td>First Name</td>
       <td>Last Name</td>
       <td>Email</td>
     </tr>
   </thead>
   <tbody id="contacts-table-body">
-    <%= render :partial => 'contact_rows' %>
-  </tbody>
+    <% @contacts.each do |c| %>
+      <tr>
+        <td>
+          <%= c.id %>
+        </td>
+        <td><%= c.status %></td>
+        <td><%= c.last_name %></td>
+        <td><%= c.email %></td>
+        <td><%= link_to "View Contact", c %></td>
+      </tr>
+    <% end %>  </tbody>
 </table>
 
-<span ic-append-from="/contacts/contact_rows?page=<%= (params[:page].to_i + 1 if params[:page]) or 2 %>"
-      ic-target="#contacts-table-body"
-      ic-include=".pageHolder:last-of-type"
-      ic-load-on="click" class="btn btn-primary">Load More</span>
+<div class="pull-right">
+  <%= will_paginate @contacts, renderer: BootstrapPagination::Rails %>
+</div>
