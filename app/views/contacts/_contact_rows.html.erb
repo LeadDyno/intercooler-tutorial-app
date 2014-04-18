@@ -1,0 +1,16 @@
+<% @contacts.each do |c| %>
+  <tr>
+    <td>
+      <% if c == @contacts.last %>
+        <span ic-append-from="/contacts/contact_rows?page=<%= (params[:page].to_i + 1 if params[:page]) or 2 %>"
+              ic-target="#contacts-table-body"
+              ic-load-on="scrolled-into-view"></span>
+      <% end %>
+      <%= c.id %>
+    </td>
+    <td><%= c.first_name %></td>
+    <td><%= c.last_name %></td>
+    <td><%= c.email %></td>
+    <td><%= link_to "View Contact", c %></td>
+  </tr>
+<% end %>

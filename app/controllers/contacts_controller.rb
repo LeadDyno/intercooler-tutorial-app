@@ -5,6 +5,11 @@ class ContactsController < ApplicationController
     render :layout => params['ic-request'].blank?
   end
 
+  def contact_rows
+    @contacts = Contact.paginate(:page => params[:page])
+    render :partial => 'contact_rows'
+  end
+
   def show
     @contact = Contact.find(params[:id])
     render :layout => params['ic-request'].blank?

@@ -15,19 +15,7 @@
       <td>Email</td>
     </tr>
   </thead>
-  <tbody>
-    <% @contacts.each do |c| %>
-    <tr>
-      <td><%= c.id %></td>
-      <td><%= c.first_name %></td>
-      <td><%= c.last_name %></td>
-      <td><%= c.email %></td>
-      <td><%= link_to "View Contact", c %></td>
-    </tr>
-    <% end %>
+  <tbody id="contacts-table-body">
+    <%= render :partial => 'contact_rows' %>
   </tbody>
 </table>
-
-<div class="pull-right">
-  <%= will_paginate @contacts, renderer: BootstrapPagination::Rails %>
-</div>
